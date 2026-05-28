@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# Exercise-Intensity-Monito
+
+>>>>>>> jun/main
 ![멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼](assets/readme/readme-banner-ko.png)
 # 🦇 멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼
 
@@ -129,7 +134,13 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 
 ## 🏗️ 시스템 구조
 
+<<<<<<< HEAD
 
+=======
+![시스템 구조](assets/readme/system-overview-ko.png)
+
+영문 버전 참고 이미지는 assets/readme/system-overview-en.png에 함께 보관합니다.
+>>>>>>> jun/main
 
 
 
