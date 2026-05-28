@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 =======
-# Exercise-Intensity-Monito
+# sLLM, Multi-Agent, RAG, Prompt Engineering, AI-DLC
 
 >>>>>>> jun/main
 ![멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼](assets/readme/readme-banner-ko.png)
