@@ -1,0 +1,23 @@
+{
+  "ui_screens": [
+    {
+      "screen_id": "ALP-UI-001",
+      "screen_name": "TS Agent 실행 화면",
+      "screen_type": "입력",
+      "menu_path": "ALPLED/TS Agent",
+      "screen_overview": "요구사항 JSON과 UI JSON을 업로드하고 모델을 선택해 통합시험 시나리오를 생성하는 화면",
+      "process_contents": [
+        {
+          "no": 1,
+          "title": "파일 업로드",
+          "description": "요구사항 JSON과 UI JSON을 선택한다."
+        },
+        {
+          "no": 2,
+          "title": "Agent 실행",
+          "description": "모델을 선택하고 생성 버튼을 클릭한다."
+        }
+      ]
+    }
+  ]
+}
