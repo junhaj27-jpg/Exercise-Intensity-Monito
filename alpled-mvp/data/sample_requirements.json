@@ -1,0 +1,20 @@
+{
+  "requirements": [
+    {
+      "requirement_id": "ALP-F001",
+      "requirement_name": "문서 업로드 및 분석",
+      "requirement_type": "기능",
+      "description": "사용자는 요구사항 정의서 JSON을 업로드하고 시스템은 통합시험 시나리오를 생성해야 한다.",
+      "priority": "상",
+      "validation_criteria": [
+        "정상 JSON 업로드 시 분석 요청이 성공하는가?",
+        "필수 필드가 누락된 JSON 업로드 시 오류 메시지를 제공하는가?",
+        "생성 결과를 JSON과 DOCX로 다운로드할 수 있는가?"
+      ],
+      "constraints": [
+        "JSON 파일만 허용",
+        "생성 결과는 D10 형식에 맞춰야 함"
+      ]
+    }
+  ]
+}
