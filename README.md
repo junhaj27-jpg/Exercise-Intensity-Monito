@@ -132,45 +132,7 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 
 ## 🏗️ 시스템 구조
 
-```text
-AI-DLC Document Automation Platform
-│
-├── Input Layer
-│   ├── RFP 문서
-│   ├── 회의록
-│   ├── 프로토타입 이미지
-│   ├── 아키텍처 설정 정보
-│   └── 문서 작성 가이드
-│
-├── Preprocessing Layer
-│   ├── 문서 파싱
-│   ├── 텍스트 정제
-│   ├── 요구사항 후보 추출
-│   └── 청킹 및 요약
-│
-├── Agent Layer
-│   ├── Requirement Agent
-│   ├── UI Design Agent
-│   ├── Architecture Agent
-│   ├── ERD Agent
-│   ├── Database Agent
-│   └── Test Scenario Agent
-│
-├── Validation Layer
-│   ├── 요구사항 추적성 검증
-│   ├── 산출물 간 정합성 검증
-│   └── 필수 항목 누락 검증
-│
-└── Output Layer
-    ├── 사용자 요구사항 정의서
-    ├── 사용자 인터페이스 설계서
-    ├── 아키텍처 설계서
-    ├── ERD 설계서
-    ├── 데이터베이스 설계서
-    └── 통합시험 시나리오
-```
 
-<br />
 
 ## 🛠️ 기술 스택
 
@@ -189,50 +151,6 @@ AI-DLC Document Automation Platform
 
 ## 📁 예시 폴더 구조
 
-```text
-ai-dlc-document-platform/
-│
-├── README.md
-├── requirements.txt
-├── .env.example
-│
-├── app/
-│   ├── main.py
-│   ├── config.py
-│   │
-│   ├── agents/
-│   │   ├── requirement_agent.py
-│   │   ├── ui_design_agent.py
-│   │   ├── architecture_agent.py
-│   │   ├── erd_agent.py
-│   │   ├── database_agent.py
-│   │   └── test_scenario_agent.py
-│   │
-│   ├── services/
-│   │   ├── document_parser.py
-│   │   ├── preprocessing.py
-│   │   ├── llm_service.py
-│   │   └── validation_service.py
-│   │
-│   ├── templates/
-│   │   ├── requirement_template.md
-│   │   ├── ui_design_template.md
-│   │   ├── architecture_template.md
-│   │   ├── erd_template.md
-│   │   ├── database_template.md
-│   │   └── test_scenario_template.md
-│   │
-│   └── outputs/
-│       └── generated_documents/
-│
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-│
-└── docs/
-    ├── project_overview.md
-    └── system_architecture.md
 ```
 
 <br />
