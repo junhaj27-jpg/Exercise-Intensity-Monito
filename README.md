@@ -1,7 +1,6 @@
-[README.md](https://github.com/user-attachments/files/28337192/README.md)
 # Exercise-Intensity-Monito
 
-<img width="1536" height="1024" alt="ChatGPT Image 2026년 5월 28일 오후 02_13_39" src="https://github.com/user-attachments/assets/61d613df-9a1b-4227-8f67-c486fe90d885" />
+![멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼](assets/readme/readme-banner-ko.png)
 # 🦇 멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼
 
 > 자체 sLLM과 멀티 에이전트 구조를 활용하여 RFP, 회의록, 프로토타입 이미지 기반의 개발 산출물을 자동 생성하는 기업형 생성형 AI 플랫폼입니다.
@@ -131,6 +130,10 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 <br />
 
 ## 🏗️ 시스템 구조
+
+![시스템 구조](assets/readme/system-overview-ko.png)
+
+영문 버전 참고 이미지는 assets/readme/system-overview-en.png에 함께 보관합니다.
 
 
 
