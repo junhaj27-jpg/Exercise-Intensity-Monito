@@ -1,6 +1,12 @@
 .env
+.venv/
+.venv-*/
+frontend/.env
 __pycache__/
 json_temp/
 mmd_temp/
 output/
 qdrant_storage/
+backend/json_temp/
+backend/uploads/
+backend/.env

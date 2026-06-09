@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 # sLLM, Multi-Agent, RAG, Prompt Engineering, AI-DLC
 
->>>>>>> jun/main
 ![멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼](assets/readme/readme-banner-ko.png)
 # 🦇 멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼
 
@@ -134,13 +131,9 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 
 ## 🏗️ 시스템 구조
 
-<<<<<<< HEAD
-
-=======
 ![시스템 구조](assets/readme/system-overview-ko.png)
 
 영문 버전 참고 이미지는 assets/readme/system-overview-en.png에 함께 보관합니다.
->>>>>>> jun/main
 
 
 
@@ -161,6 +154,21 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 
 ## 📁 예시 폴더 구조
 
+```text
+.
+├── backend/                  # FastAPI 웹 백엔드, DB 연동, 정적 프론트 서빙
+│   ├── common/db/             # MySQL 연결 및 Repository 계층
+│   ├── db/schema.sql          # 사용자/문서/산출물 관리 테이블
+│   ├── auth_users.py          # 데모 계정 시드 데이터
+│   └── main_api.py            # 로그인, 사용자, 문서 관리 API
+├── frontend/                  # ALPLED 정적 웹 화면
+├── agents/                    # 문서별 Agent
+├── workflows/                 # 산출물 생성 워크플로
+├── generators/                # DOCX/이미지 생성기
+├── rag/                       # Qdrant 기반 RAG 서비스
+├── data/                      # RFP, 회의록, 표준 문서, 샘플 데이터
+├── template/                  # 산출물 템플릿
+└── alpled-mvp/                # 통합시험 시나리오 MVP
 ```
 
 <br />
@@ -170,8 +178,8 @@ UI 설계서 / 아키텍처 설계서 / ERD / DB 설계서 / 통합시험 시나
 ### 1. 프로젝트 클론
 
 ```bash
-git clone https://github.com/your-username/ai-dlc-document-platform.git
-cd ai-dlc-document-platform
+git clone https://github.com/junhaj27-jpg/Exercise-Intensity-Monito.git
+cd Exercise-Intensity-Monito
 ```
 
 ### 2. 가상환경 생성 및 활성화
@@ -190,6 +198,7 @@ source venv/bin/activate
 
 ```bash
 pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 ### 4. 환경 변수 설정
@@ -201,22 +210,35 @@ cp .env.example .env
 `.env` 파일에 모델 경로, DB 정보, 벡터 DB 설정 등을 입력합니다.
 
 ```env
-MODEL_PATH=./models/custom-sllm
-DATABASE_URL=postgresql://user:password@localhost:5432/aidlc
-VECTOR_DB_PATH=./vectorstore
+DB_ENABLED=true
+DB_REQUIRED=false
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=alpled_db
+DB_USER=alpled
+DB_PASSWORD=alpled
+
+QDRANT_URL=http://localhost:6333
+QDRANT_COLLECTION=arkive
+LLM_BASE_URL=http://localhost:11434/v1
+LLM_MODEL_NAME=qwen3:4b
+LLM_API_KEY=EMPTY
 ```
 
 ### 5. 서버 실행
 
 ```bash
-python app/main.py
+uvicorn backend.main_api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-또는 FastAPI 사용 시:
+웹 화면:
 
-```bash
-uvicorn app.main:app --reload
+```text
+http://localhost:8000
+http://localhost:8000/?mock=false&api=http://localhost:8000
 ```
+
+서버 시작 시 `backend/db/schema.sql`을 기준으로 MySQL DB와 테이블을 자동 생성합니다. `DB_REQUIRED=false`이면 DB 연결 실패 시 JSON fallback으로 개발 서버가 실행되고, `GET /api/db/status`에서 DB 상태를 확인할 수 있습니다.
 
 <br />
 

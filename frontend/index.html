@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALPLED | sLLM 기반 개발 산출물 자동화 플랫폼</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-theme="cyan">
+
+<section class="auth-screen" id="loginScreen">
+  <div class="auth-visual">
+    <img src="./assets/alpled-logo.png" alt="ALPLED Logo" class="auth-logo" />
+    <p class="auth-eyebrow">AI-DLC PLATFORM FOR sLLM</p>
+    <h1>ALPLED</h1>
+    <h2>sLLM 기반 멀티에이전트<br>개발 산출물 자동화 플랫폼</h2>
+    <p class="auth-copy">입력 문서를 기반으로 요구사항 정의서, 화면설계서,<br>아키텍처 설계서, ERD, 통합시험 시나리오를 생성합니다.</p>
+  </div>
+
+  <form class="login-box" id="loginForm">
+    <p class="auth-path">WELCOME BACK</p>
+    <h2>로그인</h2>
+    <p class="login-info">권한에 따라 서비스 이용 화면이 구분됩니다.</p>
+
+    <div class="role-tabs">
+      <button type="button" class="role-tab active" data-role="user">👤 사용자</button>
+      <button type="button" class="role-tab" data-role="admin">⚙ 관리자</button>
+    </div>
+    <input type="hidden" id="selectedRole" value="user">
+
+    <label class="field">
+      <span>아이디</span>
+      <input id="loginId" required placeholder="아이디를 입력하세요">
+    </label>
+    <label class="field">
+      <span>비밀번호</span>
+      <input id="loginPassword" type="password" required placeholder="비밀번호를 입력하세요">
+    </label>
+    <p class="login-message" id="loginMessage"></p>
+    <button class="login-submit" type="submit">로그인</button>
+
+    <div class="account-guide">
+      <strong>테스트 계정</strong>
+      <p>사용자: <b>user / 1234</b></p>
+      <p>관리자: <b>admin / 1234</b></p>
+    </div>
+  </form>
+</section>
+
+
+<section class="admin-screen hidden" id="adminScreen">
+  <header class="admin-top">
+    <div class="select-brand">
+      <img src="./assets/alpled-logo.png" alt="ALPLED Logo">
+      <div><b>ALPLED ADMIN</b><small>SERVICE MANAGEMENT</small></div>
+    </div>
+    <button class="line" id="adminLogoutBtn">로그아웃</button>
+  </header>
+  <div class="admin-content">
+    <p class="auth-path">ADMIN DASHBOARD</p>
+    <h1>관리자 대시보드</h1>
+    <p class="description">사용자 및 문서 생성 현황을 관리합니다.</p>
+    <div class="admin-stats">
+      <article><span>전체 사용자</span><b>24</b></article>
+      <article><span>오늘 생성 문서</span><b>18</b></article>
+      <article><span>검증 완료</span><b>04</b></article>
+      <article><span>모델 상태</span><b class="online">ONLINE</b></article>
+    </div>
+    <article class="admin-panel">
+      <h2>최근 사용자 작업 현황</h2>
+      <table>
+        <thead><tr><th>사용자</th><th>최근 생성 산출물</th><th>선택 테마</th><th>상태</th></tr></thead>
+        <tbody>
+          <tr><td>USER001</td><td>통합시험 시나리오</td><td>아이스 블루 + 네이비</td><td><i class="done">완료</i></td></tr>
+          <tr><td>USER002</td><td>화면 설계서</td><td>화이트 + 민트 블루</td><td><i class="done">완료</i></td></tr>
+          <tr><td>USER003</td><td>ERD 설계서</td><td>차콜 + 전기 블루</td><td><i class="wait">검토중</i></td></tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</section>
+
+<section id="workspaceScreen" class="workspace-screen hidden">
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="./assets/alpled-logo.png" alt="ALPLED Logo" />
+      <div>
+        <h1>ALPLED</h1>
+        <p>AI-DLC DOCUMENT</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <small>현재 프로젝트</small>
+      <strong>First Project</strong>
+      <button>▾</button>
+    </div>
+
+    <p class="group">WORKSPACE</p>
+    <nav>
+      <button class="nav active" data-page="dashboard"><span>▦</span> 문서 대시보드</button>
+      <button class="nav" data-page="documents"><span>▣</span> 문서 관리</button>
+      <button class="nav" data-page="requirements"><span>⌘</span> 요구사항 정의서</button>
+      <button class="nav" data-page="uidesign"><span>▤</span> 화면 설계서</button>
+      <button class="nav" data-page="architecture"><span>◇</span> 아키텍처 설계서</button>
+      <button class="nav" data-page="erd"><span>▧</span> ERD 설계서</button>
+      <button class="nav" data-page="scenario"><span>✓</span> 통합시험 시나리오</button>
+    </nav>
+
+    <p class="group management">MANAGEMENT</p>
+    <nav>
+      <button class="nav" data-page="approval"><span>☑</span> 승인 요청</button>
+      <button class="nav" data-page="history"><span>↻</span> 버전 이력</button>
+    </nav>
+
+    <div class="profile">
+      <div class="profile-icon">U</div>
+      <div><b>USER001</b><small>Project Manager</small></div>
+      <button class="exit" id="userLogoutBtn" title="로그아웃">↗</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="search-global">⌕　프로젝트 문서 또는 산출물을 검색하세요.</div>
+      <div class="top-actions">
+        <button class="bell">◦</button>
+        <label class="theme-select-box" for="themeSelect">
+          <span>테마</span>
+          <select id="themeSelect" aria-label="화면 테마 선택">
+            <option value="ice">아이스 블루 + 네이비</option>
+            <option value="cyan">화이트 + 딥블루 + 시안</option>
+            <option value="mint">화이트 + 민트 블루</option>
+            <option value="charcoal">차콜 + 전기 블루</option>
+            <option value="purple">라이트 그레이 + 퍼플 블루</option>
+          </select>
+        </label>
+        <div class="top-user">USER001 ▾</div>
+      </div>
+    </header>
+
+    <!-- 대시보드 -->
+    <section class="page active" id="dashboard">
+      <div class="title-row">
+        <div>
+          <p class="path">FIRST PROJECT / OVERVIEW</p>
+          <h2>문서 자동화 대시보드 <small class="theme-label" id="activeThemeLabel">화이트 + 딥블루 + 시안</small></h2>
+          <p class="description">입력 문서부터 산출물 생성 및 검토 상태까지 한눈에 확인하세요.</p>
+        </div>
+        <button class="primary open-modal">+ 새 문서 등록</button>
+      </div>
+
+      <div class="stat-grid">
+        <article><p>등록 문서</p><b>05</b><span>+2 this week</span></article>
+        <article><p>생성 산출물</p><b>06</b><span>전체 설계 문서</span></article>
+        <article><p>검증 완료</p><b>04</b><span class="green">정합성 통과</span></article>
+        <article class="highlight"><p>승인 대기</p><b>02</b><span>검토가 필요합니다</span></article>
+      </div>
+
+      <div class="dashboard-body">
+        <article class="panel documents-panel">
+          <div class="panel-head">
+            <div><h3>최근 등록 문서</h3><p>업로드된 원본 입력 자료</p></div>
+            <button class="text-btn go-documents">전체보기 →</button>
+          </div>
+          <table>
+            <thead><tr><th>문서명</th><th>구분</th><th>등록일</th><th>상태</th></tr></thead>
+            <tbody>
+              <tr><td>RFP_20260520.pdf</td><td>RFP</td><td>05.20</td><td><i class="done">완료</i></td></tr>
+              <tr><td>회의록_20260520.docx</td><td>회의록</td><td>05.20</td><td><i class="done">완료</i></td></tr>
+              <tr><td>추가사항_20260520.pdf</td><td>참고자료</td><td>05.20</td><td><i class="wait">검토중</i></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="panel progress-panel">
+          <div class="panel-head"><div><h3>산출물 생성 현황</h3><p>6종 문서 진행 상태</p></div></div>
+          <div class="progress-item"><div><b>요구사항 정의서</b><span>완료</span></div><progress value="100" max="100"></progress></div>
+          <div class="progress-item"><div><b>화면 설계서</b><span>완료</span></div><progress value="100" max="100"></progress></div>
+          <div class="progress-item"><div><b>아키텍처 설계서</b><span>검증 중</span></div><progress value="72" max="100"></progress></div>
+          <div class="progress-item"><div><b>통합시험 시나리오</b><span>생성 완료</span></div><progress value="100" max="100"></progress></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 문서관리 -->
+    <section class="page" id="documents">
+      <div class="title-row compact">
+        <div><p class="path">DOCUMENTS</p><h2>문서 관리</h2></div>
+        <button class="primary open-modal">+ 파일 등록</button>
+      </div>
+      <article class="panel filter">
+        <select id="category"><option>전체 구분</option><option>RFP</option><option>회의록</option><option>산출물</option></select>
+        <input id="query" placeholder="문서명을 검색하세요." />
+        <button class="primary" id="searchBtn">검색</button>
+      </article>
+      <article class="panel list-panel">
+        <div class="panel-head document-tool">
+          <div><h3>등록 문서 목록</h3><p id="totalDocs">전체 5건</p></div>
+          <div><button class="line red" id="deleteBtn">삭제</button><button class="line" id="downloadBtn">다운로드</button></div>
+        </div>
+        <table class="full-table">
+          <thead><tr><th><input type="checkbox" id="selectAll" /></th><th>번호</th><th>문서명</th><th>구분</th><th>등록자</th><th>등록일자</th><th>상태</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="paging"><button>‹</button><button class="selected">1</button><button>2</button><button>3</button><button>›</button></div>
+      </article>
+    </section>
+
+    <!-- 요구사항 문서 -->
+    <section class="page" id="requirements">
+      <div class="viewer-toolbar">
+        <div><p class="path">GENERATED OUTPUT</p><h2>사용자 요구사항 정의서</h2></div>
+        <div><span class="ver">v1.0</span><button class="line">다운로드</button><button class="primary">수정하기</button></div>
+      </div>
+      <div class="paper-space">
+        <article class="paper">
+          <h3>사용자 요구사항 정의서</h3>
+          <table class="paper-info"><tr><th>시스템명</th><td>결제시스템 관리</td><th>서브시스템명</th><td>총액결제관리</td></tr><tr><th>단계</th><td>분석</td><th>작성일자</th><td>2026. 06. 04 / 버전 1.0</td></tr></table>
+          <table class="paper-detail"><thead><tr><th>요구사항명</th><th>구분</th><th>요구사항 설명</th><th>요구사항 출처</th><th>중요도</th><th>검수기준</th></tr></thead>
+          <tbody><tr><td>원화 자금이체 신청</td><td>기능</td><td>참가기관의 계좌를 통한 자금거래 결제를 처리할 수 있어야 한다.</td><td>RFP 개발요구서</td><td>상</td><td>사용자의 이체처리 결과가 정확하게 확인된다.</td></tr></tbody></table>
+        </article>
+      </div>
+    </section>
+
+    <!-- 통합시험 -->
+    <section class="page" id="scenario">
+      <div class="viewer-toolbar">
+        <div><p class="path">GENERATED OUTPUT</p><h2>통합시험 시나리오</h2></div>
+        <div><span class="ver">v1.0</span><button class="line">DOCX 다운로드</button><button class="primary">수정하기</button></div>
+      </div>
+      <article class="panel scenario-panel">
+        <div class="scenario-banner">
+          <div><h3>통합시험 시나리오 결과</h3><p>요구사항 및 화면설계서 기반으로 생성된 시험 항목입니다.</p></div>
+          <span>정합성 검증 완료</span>
+        </div>
+        <table class="full-table scenario-table">
+          <thead><tr><th>시험 ID</th><th>요구사항 ID</th><th>시험 항목</th><th>입력 자료</th><th>기대 결과</th><th>결과</th></tr></thead>
+          <tbody>
+            <tr><td>TST-001</td><td>REQ-SER-036</td><td>시나리오 생성</td><td>요구사항 정의서</td><td>시험 시나리오가 자동 생성된다.</td><td><i class="done">PASS</i></td></tr>
+            <tr><td>TST-002</td><td>REQ-SER-037</td><td>절차 확인</td><td>화면설계서</td><td>단계별 시험 결과가 표시된다.</td><td><i class="done">PASS</i></td></tr>
+            <tr><td>TST-003</td><td>REQ-SER-038</td><td>파일 저장</td><td>생성 문서</td><td>DOCX 파일을 내려받는다.</td><td><i class="wait">대기</i></td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- 임시 페이지 -->
+    <section class="page placeholder" id="uidesign"><h2>화면 설계서</h2><p>생성된 사용자 인터페이스 설계서가 표시되는 영역입니다.</p></section>
+    <section class="page placeholder" id="architecture"><h2>아키텍처 설계서</h2><p>시스템 아키텍처 구성도와 기술 구성이 표시되는 영역입니다.</p></section>
+    <section class="page placeholder" id="erd"><h2>ERD 설계서</h2><p>엔티티 관계 모형 설계서가 표시되는 영역입니다.</p></section>
+    <section class="page placeholder" id="approval"><h2>승인 요청</h2><p>승인 대기 중인 산출물을 확인하는 화면입니다.</p></section>
+    <section class="page placeholder" id="history"><h2>버전 이력</h2><p>산출물 생성 및 수정 이력을 확인하는 화면입니다.</p></section>
+  </main>
+</div>
+</section>
+<div class="modal-wrap" id="modal">
+  <div class="modal">
+    <header><h3>새 문서 등록</h3><button id="modalClose">×</button></header>
+    <label><span>문서명</span><input id="newName" placeholder="문서명을 입력하세요." /></label>
+    <label><span>문서 구분</span><select id="newType"><option>RFP</option><option>회의록</option><option>산출물</option></select></label>
+    <label class="file-zone"><input type="file" id="fileInput" hidden /><b>파일을 선택하거나 드래그하세요</b><small id="filename">PDF, DOCX, HWP 지원</small></label>
+    <footer><button class="line" id="modalCancel">취소</button><button class="primary" id="submit">등록</button></footer>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="./app.js"></script>
+</body>
+</html>
