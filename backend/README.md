@@ -10,11 +10,13 @@ copy .env.example .env
 uvicorn backend.main_api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-프론트는 기본 목업 모드로 열립니다. 실제 API를 확인하려면 다음 주소를 사용합니다.
+프론트는 기본으로 같은 FastAPI 서버의 `/api`를 호출합니다.
 
 ```text
-http://localhost:8000/?mock=false&api=http://localhost:8000
+http://localhost:8000
 ```
+
+목업 화면만 확인하려면 `http://localhost:8000?mock=true`를 사용합니다.
 
 ## DB 설정
 

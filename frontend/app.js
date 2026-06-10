@@ -1,9 +1,12 @@
 const params = new URLSearchParams(window.location.search);
 
-// 기본은 목업 모드
-// 실제 API 연동 테스트 시: http://localhost:5500?mock=false&api=http://localhost:8000
-const MOCK_MODE = params.get("mock") !== "false";
-const API_BASE_URL = params.get("api") || "http://localhost:8000";
+const isHttpPage = window.location.protocol === "http:" || window.location.protocol === "https:";
+const defaultApiBaseUrl = isHttpPage ? window.location.origin : "http://localhost:8000";
+
+// FastAPI에서 서빙하면 기본으로 같은 origin의 백엔드 API를 사용합니다.
+// 목업 모드는 http://localhost:8000?mock=true 처럼 명시한 경우에만 켜집니다.
+const MOCK_MODE = params.get("mock") === "true";
+const API_BASE_URL = params.get("api") || defaultApiBaseUrl;
 
 const sampleDocs = [
   { id: 1, name: "요구사항 정의서 20260520.pdf", type: "RFP", user: "USER001", date: "2026-05-20 14:24", state: "등록완료" },

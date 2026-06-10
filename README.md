@@ -235,8 +235,10 @@ uvicorn backend.main_api:app --host 0.0.0.0 --port 8000 --reload
 
 ```text
 http://localhost:8000
-http://localhost:8000/?mock=false&api=http://localhost:8000
+http://localhost:8000?mock=true
 ```
+
+기본 화면은 같은 FastAPI 서버의 `/api`를 호출합니다. `?mock=true`를 붙이면 백엔드 없이 목업 데이터로 화면만 확인할 수 있습니다.
 
 서버 시작 시 `backend/db/schema.sql`을 기준으로 MySQL DB와 테이블을 자동 생성합니다. `DB_REQUIRED=false`이면 DB 연결 실패 시 JSON fallback으로 개발 서버가 실행되고, `GET /api/db/status`에서 DB 상태를 확인할 수 있습니다.
 
